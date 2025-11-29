@@ -129,3 +129,7 @@ To make this the definitive handbook, consider adding:
 
 Contributions, corrections, and additional example topologies are welcome!
 Feel free to open issues or submit PRs.
+
+## 📄 License
+
+This repository is released under the [MIT License](./LICENSE).

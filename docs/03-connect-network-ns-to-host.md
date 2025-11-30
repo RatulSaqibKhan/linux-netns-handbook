@@ -44,6 +44,8 @@ This creates:
 - `veth-host` → host side
 - `veth-ns` → to be moved into namespace
 
+![Create namespace and veth](../diagrams/create-ns-veth.png)
+
 ## 🛠️ Step 3 — Move One End into the Namespace
 
 ```bash
@@ -66,6 +68,7 @@ Verify inside namespace:
 ```bash
 sudo ip netns exec ns1 ip link
 ```
+![Set veth to ns](../diagrams/set-veth-to-ns.png)
 
 ## 🛠️ Step 4 — Assign IP Addresses
 
@@ -82,6 +85,8 @@ sudo ip link set veth-host up
 sudo ip netns exec ns1 ip addr add 10.0.0.2/24 dev veth-ns
 sudo ip netns exec ns1 ip link set veth-ns up
 ```
+
+![Add route to veth](../diagrams/add-route-to-veth.png)
 
 ## 🛠️ Step 5 — Enable Loopback
 
@@ -123,6 +128,8 @@ ping 10.0.0.2
 sudo ip netns exec ns1 ping 10.0.0.1
 ```
 
+![Conecting host and namespace](../diagrams/connecting-host-ns.png)
+
 If both work, your namespace is successfully connected to the host.
 
 ## 📘 Visual Diagram
@@ -131,8 +138,8 @@ If both work, your namespace is successfully connected to the host.
 +--------------------+              +------------------------+
 |     Host Network   |              |   ns1 Network Namespace|
 |                    |              |                        |
-| 10.0.0.1           |              |   10.0.0.2             |
-|   veth-host        |<============>| veth-ns                |
+|         10.0.0.1   |              |   10.0.0.2             |
+|          veth-host |<============>| veth-ns                |
 |                    |   veth pair  |                        |
 +--------------------+              +------------------------+
 ```
